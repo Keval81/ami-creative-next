@@ -1,3 +1,5 @@
+import { CardHoverReveal, CardHoverRevealMain, CardHoverRevealContent } from "@/components/ui/card-hover-reveal";
+
 const SERVICES = [
   {
     icon: "brush",
@@ -25,7 +27,7 @@ const SERVICES = [
     desc: "Creating stand-out packaging that tells your product's story and captures attention on any shelf.",
   },
   {
-    icon: "animation",
+    icon: "motion_photos_on",
     title: "Motion Graphics",
     desc: "Bringing brands to life with dynamic motion design and animation that captivates and communicates effectively.",
   },
@@ -44,26 +46,26 @@ export default function Services() {
             narrative and ambitious goals.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
           {SERVICES.map((s) => (
-            <div
-              key={s.title}
-              className="group flex flex-col gap-6 rounded-2xl border-2 border-transparent bg-light-blue p-10 transition-all duration-300 hover:-translate-y-2 hover:border-primary hover:shadow-2xl hover:shadow-primary/10"
-            >
-              <div className="flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                <span className="material-symbols-outlined text-3xl">
-                  {s.icon}
-                </span>
-              </div>
-              <div className="flex flex-col gap-3">
-                <h3 className="font-heading text-navy text-2xl font-black leading-tight">
-                  {s.title}
-                </h3>
-                <p className="text-navy/70 text-base leading-relaxed">
-                  {s.desc}
-                </p>
-              </div>
-            </div>
+            <CardHoverReveal key={s.title} className="rounded-2xl h-72 w-full cursor-pointer">
+              <CardHoverRevealMain className="rounded-2xl">
+                <div
+                  className="flex flex-col h-full p-6 rounded-2xl"
+                  style={{ background: 'linear-gradient(135deg, #e4f0fa 0%, #d4e8f5 50%, #c8dff0 100%)' }}
+                >
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center mb-4" style={{ backgroundColor: '#fce4ec' }}>
+                    <span className="material-symbols-outlined text-2xl" style={{ color: '#e75a7c' }}>{s.icon}</span>
+                  </div>
+                  <h3 className="text-xl font-bold mb-2" style={{ color: '#2e2d4d' }}>{s.title}</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: '#555' }}>{s.desc}</p>
+                </div>
+              </CardHoverRevealMain>
+              <CardHoverRevealContent className="rounded-xl" style={{ backgroundColor: 'rgba(46, 45, 77, 0.92)' }}>
+                <h3 className="text-lg font-bold text-white mb-2">{s.title}</h3>
+                <p className="text-sm leading-relaxed text-white/80">{s.desc}</p>
+              </CardHoverRevealContent>
+            </CardHoverReveal>
           ))}
         </div>
         {/* CTA banner */}

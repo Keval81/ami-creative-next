@@ -1,3 +1,5 @@
+import { ShimmerButton } from "@/components/ui/shimmer-button";
+
 export default function About() {
   return (
     <section id="about" className="py-16 md:py-24 px-6 lg:px-12">
@@ -66,15 +68,15 @@ export default function About() {
             </div>
           </div>
           <div className="pt-4">
-            <a
+            <ShimmerButton
               href="#contact"
-              className="group relative inline-flex items-center justify-center bg-primary hover:bg-primary/90 text-white text-lg font-heading font-bold py-4 px-10 rounded-xl transition-all duration-300 shadow-lg shadow-primary/30 hover:shadow-xl hover:-translate-y-1"
+              background="rgba(231, 90, 124, 1)"
+              shimmerColor="#ffffff"
+              borderRadius="100px"
+              className="px-8 py-3 font-semibold"
             >
-              <span className="mr-2">Get Started</span>
-              <span className="material-symbols-outlined transform group-hover:translate-x-1 transition-transform">
-                arrow_forward
-              </span>
-            </a>
+              Get Started
+            </ShimmerButton>
           </div>
         </div>
       </div>

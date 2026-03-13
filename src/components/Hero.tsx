@@ -1,47 +1,63 @@
+"use client";
+
+import { useState, useEffect, useCallback } from "react";
+import { TextScramble } from "@/components/ui/text-scramble";
+import { ShimmerButton } from "@/components/ui/shimmer-button";
+import { MagneticButton } from "@/components/ui/magnetic-button";
+import { FlickeringGrid } from "@/components/ui/flickering-grid";
+
 export default function Hero() {
+  const [trigger, setTrigger] = useState(true);
+
+  const handleScrambleComplete = useCallback(() => {
+    setTrigger(false);
+    const timeout = setTimeout(() => setTrigger(true), 2000);
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center bg-cream px-6">
-      <div className="max-w-4xl mx-auto flex flex-col items-center text-center gap-8">
-        <h1 className="font-heading text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[1.05] tracking-tight text-navy">
-          Marketing with <br />
-          <span className="relative inline-block">
-            Heart &amp; Hustle
-            <svg
-              className="absolute w-full h-auto left-0 -bottom-2 md:-bottom-4 text-primary opacity-80"
-              fill="none"
-              viewBox="0 0 300 20"
-              xmlns="http://www.w3.org/2000/svg"
+    <section id="hero" className="relative min-h-screen flex items-center bg-cream px-6 lg:px-10">
+      <FlickeringGrid
+        className="absolute inset-0 z-0"
+        squareSize={4}
+        gridGap={6}
+        flickerChance={0.3}
+        maxOpacity={0.08}
+        color="#e75a7c"
+      />
+      <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full min-h-screen px-6 lg:px-10">
+        <div className="flex flex-col gap-6 justify-center py-32 md:py-0">
+          <div style={{ height: 'clamp(160px, 22vw, 260px)', minHeight: 'clamp(160px, 22vw, 260px)', overflow: 'hidden', display: 'block' }}>
+            <TextScramble
+              duration={1.5}
+              speed={0.05}
+              trigger={trigger}
+              onScrambleComplete={handleScrambleComplete}
+              className="font-heading text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight"
             >
-              <path
-                d="M2 15C50 5 150 2 298 12"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeWidth="4"
-              />
-            </svg>
-          </span>
-        </h1>
-        <p className="text-lg md:text-xl font-medium leading-relaxed text-navy/70 max-w-2xl">
-          I&apos;m Nia Bheda. I help purpose-driven brands stand out and scale
-          with creative strategy and storytelling that truly connects.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 mt-4">
-          <a
-            href="#contact"
-            className="flex min-w-[160px] cursor-pointer items-center justify-center rounded-full h-14 px-8 bg-primary text-white text-base font-heading font-bold shadow-lg hover:-translate-y-1 transition-transform duration-300"
-          >
-            <span className="mr-2">Let&apos;s Chat</span>
-            <span className="material-symbols-outlined text-sm">
-              arrow_forward
-            </span>
-          </a>
-          <a
-            href="#portfolio"
-            className="flex min-w-[160px] cursor-pointer items-center justify-center rounded-full h-14 px-8 bg-transparent border-2 border-navy/20 text-navy text-base font-heading font-bold hover:bg-navy/5 transition-colors"
-          >
-            View Work
-          </a>
+              Marketing with Heart &amp; Hustle
+            </TextScramble>
+          </div>
+          <p className="text-base md:text-lg font-medium leading-relaxed text-navy/70 max-w-md">
+            I&apos;m Nia Bheda. I help purpose-driven brands stand out and scale
+            with creative strategy and storytelling that truly connects.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 mt-4">
+            <ShimmerButton
+              href="#contact"
+              background="rgba(231, 90, 124, 1)"
+              shimmerColor="#ffffff"
+              borderRadius="100px"
+              className="px-8 py-3 font-semibold"
+            >
+              Let&apos;s Chat
+            </ShimmerButton>
+            <MagneticButton href="#work">
+              View Work
+            </MagneticButton>
+          </div>
         </div>
+        <div className="hidden md:flex items-center justify-center min-h-[400px] border-2 border-dashed border-light-blue rounded-2xl" />
       </div>
     </section>
   );

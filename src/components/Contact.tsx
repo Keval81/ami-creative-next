@@ -1,3 +1,5 @@
+import { ShimmerButton } from "@/components/ui/shimmer-button";
+
 export default function Contact() {
   return (
     <section id="contact" className="py-16 md:py-24 px-6 lg:px-12">
@@ -88,15 +90,15 @@ export default function Contact() {
                 />
               </label>
               <div className="pt-4 flex items-center justify-between flex-wrap gap-4">
-                <button
-                  className="bg-primary hover:bg-primary/90 text-white font-heading font-bold py-4 px-10 rounded-full transition-transform transform hover:-translate-y-1 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary inline-flex items-center gap-2 cursor-pointer"
+                <ShimmerButton
+                  background="rgba(231, 90, 124, 1)"
+                  shimmerColor="#ffffff"
+                  borderRadius="100px"
+                  className="px-8 py-3 font-semibold w-full"
                   type="submit"
                 >
                   Send Message
-                  <span className="material-symbols-outlined text-sm">
-                    send
-                  </span>
-                </button>
+                </ShimmerButton>
               </div>
             </form>
           </div>
