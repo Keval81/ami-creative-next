@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins, DM_Sans, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { MobileNav } from "@/components/MobileNav";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -42,6 +43,7 @@ export default function RootLayout({
         className={`${poppins.variable} ${dmSans.variable} antialiased min-h-screen`}
       >
         {children}
+        <MobileNav />
       </body>
     </html>
   );
