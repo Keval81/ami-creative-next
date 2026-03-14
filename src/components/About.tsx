@@ -1,4 +1,4 @@
-import { ShimmerButton } from "@/components/ui/shimmer-button";
+import { MagneticButton } from "@/components/ui/magnetic-button";
 
 export default function About() {
   return (
@@ -11,7 +11,7 @@ export default function About() {
             <div
               className="w-full h-full bg-slate-200 bg-cover bg-center"
               style={{
-                backgroundImage: `url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8GtJqIpSghJxhRa1E7TWqekkvVVl6ahEN-DV8eBZAtCST8oDl6CHgKDln__ZdmfrpRwmIV76LxI3pxus5Fz965mtpqg-_zdgoTmXoIIo7PpZhyr7JARoOekgqCQtHB0HmDfcJbjdebW50H1tcG8G-fJ2g7cYkVeiIF9fi_nC-2C-pBKlvvG5l5VFd0mK_por3GMcljR33zYVuig4quE1sQQf5F8PkQf_Now7N1kR4mpRTq_L_t_e3n1ZR1G3URcElZlB2sMgxR2Y_')`,
+                backgroundImage: `url('/images/nia-portrait.png')`,
               }}
               role="img"
               aria-label="Portrait of Nia Bheda"
@@ -68,15 +68,9 @@ export default function About() {
             </div>
           </div>
           <div className="pt-4">
-            <ShimmerButton
-              href="#contact"
-              background="rgba(231, 90, 124, 1)"
-              shimmerColor="#ffffff"
-              borderRadius="100px"
-              className="px-8 py-3 font-semibold"
-            >
+            <MagneticButton href="#contact">
               Get Started
-            </ShimmerButton>
+            </MagneticButton>
           </div>
         </div>
       </div>

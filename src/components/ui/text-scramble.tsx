@@ -65,7 +65,7 @@ function TextScramble({
   return (
     <motion.h1
       className={className}
-      style={{ color: '#2e2d4d' }}
+      style={{ color: '#2e2d4d', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}

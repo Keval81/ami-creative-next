@@ -1,23 +1,21 @@
 import type { Metadata } from "next";
-import { Poppins, DM_Sans, Geist } from "next/font/google";
+import { Poppins, DM_Sans } from "next/font/google";
 import "./globals.css";
-import { cn } from "@/lib/utils";
 import { MobileNav } from "@/components/MobileNav";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-  variable: "--font-poppins",
-  display: "swap",
+  subsets: ['latin'],
+  weight: ['400', '600', '700', '900'],
+  variable: '--font-heading',
+  display: 'swap',
 });
 
 const dmSans = DM_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-dm-sans",
-  display: "swap",
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  variable: '--font-body',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -32,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn(geist.variable)}>
+    <html lang="en" className={`${poppins.variable} ${dmSans.variable}`}>
       <head>
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
@@ -40,7 +38,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${poppins.variable} ${dmSans.variable} antialiased min-h-screen`}
+        className="antialiased min-h-screen"
       >
         {children}
         <MobileNav />

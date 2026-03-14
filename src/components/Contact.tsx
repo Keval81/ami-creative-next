@@ -1,4 +1,4 @@
-import { ShimmerButton } from "@/components/ui/shimmer-button";
+import { MagneticButton } from "@/components/ui/magnetic-button";
 
 export default function Contact() {
   return (
@@ -90,15 +90,9 @@ export default function Contact() {
                 />
               </label>
               <div className="pt-4 flex items-center justify-between flex-wrap gap-4">
-                <ShimmerButton
-                  background="rgba(231, 90, 124, 1)"
-                  shimmerColor="#ffffff"
-                  borderRadius="100px"
-                  className="px-8 py-3 font-semibold w-full"
-                  type="submit"
-                >
+                <MagneticButton className="w-full" variant="pink">
                   Send Message
-                </ShimmerButton>
+                </MagneticButton>
               </div>
             </form>
           </div>

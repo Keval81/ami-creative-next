@@ -9,9 +9,10 @@ type MagneticButtonType = {
   distance?: number;
   href?: string;
   className?: string;
+  variant?: 'default' | 'pink';
 };
 
-function MagneticButton({ children, distance = 0.6, href, className }: MagneticButtonType) {
+function MagneticButton({ children, distance = 0.6, href, className, variant = 'default' }: MagneticButtonType) {
   const [isHovered, setIsHovered] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
@@ -52,8 +53,11 @@ function MagneticButton({ children, distance = 0.6, href, className }: MagneticB
       onClick={handleClick}
       style={{ x: springX, y: springY, display: 'inline-block', cursor: 'pointer' }}
     >
-      <div className={`rounded-full border-2 px-8 py-3 font-semibold text-base transition-colors duration-200 hover:bg-gray-50 ${className || ''}`}
-        style={{ borderColor: '#2e2d4d', color: '#2e2d4d', backgroundColor: 'white' }}>
+      <div className={`rounded-full border-2 px-8 py-3 font-semibold text-base transition-colors duration-200 ${className || ''}`}
+        style={variant === 'pink'
+          ? { borderColor: '#e75a7c', color: 'white', backgroundColor: '#e75a7c' }
+          : { borderColor: '#2e2d4d', color: '#2e2d4d', backgroundColor: 'white' }
+        }>
         {children}
       </div>
     </motion.div>

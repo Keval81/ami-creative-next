@@ -3,20 +3,31 @@ import { useEffect, useState } from "react";
 
 const BG_IMAGES = [
   "/images/bg-bigben.jpg",
+  "/images/logo-graffiti-1.png",
+  "/images/bg-london90s.jpg",
+  "/images/logo-graffiti-2.png",
   "/images/bg-bananaman.jpg",
+  "/images/logo-graffiti-3.png",
   "/images/bg-dangermouse.jpg",
-  "/images/bg-london.jpg",
+  "/images/logo-letter-a.png",
+  "/images/bg-carnival.jpg",
+  "/images/logo-ami-large-1.png",
+  "/images/logo-graffiti-5.png",
+  "/images/bg-london2000s.jpg",
+  "/images/logo-letter-m.png",
   "/images/bg-duckula.jpg",
-  "/images/bg-graffiti.jpg",
+  "/images/bg-portobello.jpg",
+  "/images/bg-w3bus.jpg",
+  "/images/logo-letter-i.png",
+  "/images/bg-pub.jpg",
+  "/images/logo-ami-large-2.png",
   "/images/bg-towerbridge.jpg",
   "/images/bg-rolandrat.jpg",
-  "/images/bg-london90s.jpg",
-  "/images/bg-london2000s.jpg",
-  "/images/bg-carnival.jpg",
-  "/images/bg-pub.jpg",
-  "/images/bg-portobello.jpg",
+  "/images/bg-graffiti.jpg",
   "/images/bg-londonkids.jpg",
 ];
+
+const isLogoImage = (src: string) => src.includes('logo-graffiti') || src.includes('logo-ami-large') || src.includes('logo-letter');
 
 export function HeroGraphic() {
   const [bgIndex, setBgIndex] = useState(0);
@@ -32,24 +43,115 @@ export function HeroGraphic() {
   return (
     <div className="relative w-full h-full">
       {BG_IMAGES.map((src, i) => (
-        <div
-          key={src}
-          className="absolute inset-0 bg-cover bg-center transition-none"
-          style={{
-            backgroundImage: `url(${src})`,
-            opacity: i === bgIndex ? 1 : 0,
-          }}
-        />
+        isLogoImage(src) ? (
+          <div
+            key={src}
+            className="absolute inset-0 transition-none"
+            style={{ opacity: i === bgIndex ? 1 : 0 }}
+          >
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `url(/images/bg-graffiti.jpg)`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                filter: 'grayscale(100%) brightness(0.4)',
+              }}
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `url(${src})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                backgroundColor: 'transparent',
+              }}
+            />
+          </div>
+        ) : (
+          <div
+            key={src}
+            className="absolute inset-0 transition-none"
+            style={{
+              backgroundImage: `url(${src})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              opacity: i === bgIndex ? 1 : 0,
+              filter: 'grayscale(100%)',
+            }}
+          />
+        )
       ))}
-      <div className="absolute inset-0 z-10 pointer-events-none"
-        style={{ background: 'linear-gradient(to right, #f5ece6 0%, #f5ece6 10%, rgba(245,236,230,0.7) 40%, transparent 70%)' }}
-      />
-      <div className="absolute inset-0 z-10 pointer-events-none"
-        style={{ background: 'linear-gradient(to bottom, #f5ece6 0%, transparent 15%)' }}
-      />
-      <div className="absolute inset-0 z-10 pointer-events-none"
-        style={{ background: 'linear-gradient(to top, #f5ece6 0%, transparent 20%)' }}
-      />
+      <svg
+        className="absolute left-0 top-0 z-20 pointer-events-none"
+        style={{ width: '100px', height: '100%', overflow: 'visible' }}
+        viewBox="0 0 100 800"
+        preserveAspectRatio="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <filter id="tear-left" x="-50%" y="0%" width="200%" height="100%" colorInterpolationFilters="sRGB">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.025"
+              numOctaves={3}
+              seed={5}
+              result="noise"
+            />
+            <feDisplacementMap
+              in="SourceGraphic"
+              in2="noise"
+              scale={22}
+              xChannelSelector="R"
+              yChannelSelector="G"
+              result="displaced"
+            />
+          </filter>
+        </defs>
+        <rect
+          x="-20"
+          y="-10"
+          width="85"
+          height="820"
+          fill="#f5ece6"
+          filter="url(#tear-left)"
+        />
+      </svg>
+      <svg
+        className="absolute bottom-0 left-0 z-20 pointer-events-none"
+        style={{ width: '100%', height: '80px', overflow: 'visible' }}
+        viewBox="0 0 1000 80"
+        preserveAspectRatio="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <filter id="tear-bottom" x="0%" y="-50%" width="100%" height="200%" colorInterpolationFilters="sRGB">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.025"
+              numOctaves={3}
+              seed={9}
+              result="noise"
+            />
+            <feDisplacementMap
+              in="SourceGraphic"
+              in2="noise"
+              scale={22}
+              xChannelSelector="R"
+              yChannelSelector="G"
+            />
+          </filter>
+        </defs>
+        <rect
+          x="-10"
+          y="35"
+          width="1020"
+          height="60"
+          fill="#f5ece6"
+          filter="url(#tear-bottom)"
+        />
+      </svg>
     </div>
   );
 }

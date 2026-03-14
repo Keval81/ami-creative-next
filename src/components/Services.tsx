@@ -5,31 +5,37 @@ const SERVICES = [
     icon: "brush",
     title: "Brand Identity",
     desc: "Crafting unique visual identities that resonate with your audience and establish a powerful market presence.",
+    image: "/images/service-brand-identity.png",
   },
   {
     icon: "devices",
     title: "UI/UX Design",
     desc: "Designing intuitive, accessible, and beautiful user experiences for digital products that drive engagement.",
+    image: "/images/service-uiux.png",
   },
   {
     icon: "code",
     title: "Web Development",
     desc: "Building responsive, high-performance websites and web applications using modern, scalable technologies.",
+    image: "/images/service-web-dev.png",
   },
   {
     icon: "visibility",
     title: "Creative Direction",
     desc: "Guiding the creative vision for campaigns and brand touchpoints to ensure a cohesive and impactful narrative.",
+    image: "/images/service-creative-direction.png",
   },
   {
     icon: "inventory_2",
     title: "Packaging Design",
     desc: "Creating stand-out packaging that tells your product's story and captures attention on any shelf.",
+    image: "/images/service-packaging.png",
   },
   {
     icon: "motion_photos_on",
     title: "Motion Graphics",
     desc: "Bringing brands to life with dynamic motion design and animation that captivates and communicates effectively.",
+    image: "/images/service-motion.png",
   },
 ];
 
@@ -51,15 +57,9 @@ export default function Services() {
             <CardHoverReveal key={s.title} className="rounded-2xl h-72 w-full cursor-pointer">
               <CardHoverRevealMain className="rounded-2xl">
                 <div
-                  className="flex flex-col h-full p-6 rounded-2xl"
-                  style={{ background: 'linear-gradient(135deg, #e4f0fa 0%, #d4e8f5 50%, #c8dff0 100%)' }}
-                >
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center mb-4" style={{ backgroundColor: '#fce4ec' }}>
-                    <span className="material-symbols-outlined text-2xl" style={{ color: '#e75a7c' }}>{s.icon}</span>
-                  </div>
-                  <h3 className="text-xl font-bold mb-2" style={{ color: '#2e2d4d' }}>{s.title}</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: '#555' }}>{s.desc}</p>
-                </div>
+                  className="h-full w-full rounded-2xl bg-cover bg-center"
+                  style={{ backgroundImage: `url('${s.image}')` }}
+                />
               </CardHoverRevealMain>
               <CardHoverRevealContent className="rounded-xl" style={{ backgroundColor: 'rgba(46, 45, 77, 0.92)' }}>
                 <h3 className="text-lg font-bold text-white mb-2">{s.title}</h3>
