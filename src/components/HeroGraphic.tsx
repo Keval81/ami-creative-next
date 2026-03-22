@@ -1,28 +1,114 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+const BG_IMAGES = [
+  "/images/bg-bigben.jpg",
+  "/images/logo-graffiti-1.png",
+  "/images/bg-london90s.jpg",
+  "/images/logo-graffiti-2.png",
+  "/images/bg-bananaman.jpg",
+  "/images/logo-graffiti-3.png",
+  "/images/bg-dangermouse.jpg",
+  "/images/logo-letter-a.png",
+  "/images/bg-carnival.jpg",
+  "/images/logo-ami-large-1.png",
+  "/images/logo-graffiti-5.png",
+  "/images/bg-london2000s.jpg",
+  "/images/logo-letter-m.png",
+  "/images/bg-duckula.jpg",
+  "/images/bg-portobello.jpg",
+  "/images/bg-w3bus.jpg",
+  "/images/logo-letter-i.png",
+  "/images/bg-pub.jpg",
+  "/images/logo-ami-large-2.png",
+  "/images/bg-towerbridge.jpg",
+  "/images/bg-rolandrat.jpg",
+  "/images/bg-graffiti.jpg",
+  "/images/bg-londonkids.jpg",
+];
+
+const isLogoImage = (src: string) =>
+  src.includes("logo-graffiti") ||
+  src.includes("logo-ami-large") ||
+  src.includes("logo-letter");
 
 export function HeroGraphic() {
-  const [ready, setReady] = useState(false);
+  const [bgIndex, setBgIndex] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  useEffect(() => {
+    // Preload the first few images before starting the animation
+    let loaded = 0;
+    const toPreload = BG_IMAGES.slice(0, 4);
+    toPreload.forEach((src) => {
+      const img = new Image();
+      img.onload = () => {
+        loaded++;
+        if (loaded >= toPreload.length) setImagesLoaded(true);
+      };
+      img.onerror = () => {
+        loaded++;
+        if (loaded >= toPreload.length) setImagesLoaded(true);
+      };
+      img.src = src;
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!imagesLoaded) return;
+    const interval = setInterval(() => {
+      setBgIndex((prev) => (prev + 1) % BG_IMAGES.length);
+    }, 120);
+    return () => clearInterval(interval);
+  }, [imagesLoaded]);
 
   return (
-    <div className="relative w-full h-full overflow-hidden bg-cream">
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        onCanPlay={() => setReady(true)}
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{
-          filter: "grayscale(80%)",
-          opacity: ready ? 1 : 0,
-          transition: "opacity 0.4s ease",
-        }}
-      >
-        <source src="/images/ami-logo-animation.webm" type="video/webm" />
-        <source src="/images/ami-logo-animation.mp4" type="video/mp4" />
-      </video>
+    <div
+      className="relative w-full h-full bg-cream"
+      style={{ opacity: imagesLoaded ? 1 : 0, transition: "opacity 0.3s ease" }}
+    >
+      {BG_IMAGES.map((src, i) =>
+        isLogoImage(src) ? (
+          <div
+            key={src}
+            className="absolute inset-0 transition-none"
+            style={{ opacity: i === bgIndex ? 1 : 0 }}
+          >
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `url(/images/bg-graffiti.jpg)`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                filter: "grayscale(100%) brightness(0.4)",
+              }}
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `url(${src})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                backgroundColor: "transparent",
+              }}
+            />
+          </div>
+        ) : (
+          <div
+            key={src}
+            className="absolute inset-0 transition-none"
+            style={{
+              backgroundImage: `url(${src})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: i === bgIndex ? 1 : 0,
+              filter: "grayscale(100%)",
+            }}
+          />
+        )
+      )}
 
       {/* Left torn edge */}
       <svg
