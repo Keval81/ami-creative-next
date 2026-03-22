@@ -19,6 +19,25 @@ export default function Hero() {
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
       <div className="relative z-10 w-full max-w-7xl mx-auto pl-6 lg:pl-16">
         <div className="flex flex-col gap-6 justify-center min-h-screen py-32 md:py-0 md:w-1/2">
+          <div className="w-full max-w-xs mb-2">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              ref={(el) => {
+                if (el) el.playbackRate = 0.25;
+              }}
+              style={{
+                width: '100%',
+                height: 'auto',
+                display: 'block',
+              }}
+            >
+              <source src="/images/ami-logo-animation.webm" type="video/webm" />
+              <source src="/images/ami-logo-animation.mp4" type="video/mp4" />
+            </video>
+          </div>
           <div style={{ height: 'clamp(160px, 22vw, 260px)', minHeight: 'clamp(160px, 22vw, 260px)', overflow: 'hidden', display: 'block' }}>
             <TextScramble
               duration={1.5}
