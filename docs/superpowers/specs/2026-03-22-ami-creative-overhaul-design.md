@@ -90,7 +90,10 @@ Footer      navy
 
 ## Global Polish
 
-Applied to all sections as part of the overhaul.
+Applied to all sections as part of the overhaul. **New sections (Process, Pricing, Blog, rebuilt Portfolio, rebuilt Highlights) must be built using these tokens from the start — no separate polish pass needed for them. Step 10 in the implementation order only covers the pre-existing sections.**
+
+### Tailwind custom tokens
+`bg-light-blue`, `text-navy`, `text-primary`, `bg-navy`, `bg-cream` are custom colour tokens already configured in the project's Tailwind theme (`globals.css` / `@theme inline`). Do not add new custom tokens — use the existing set.
 
 ### Spacing
 - Unified vertical padding: `py-20 md:py-32` for all sections
@@ -160,7 +163,20 @@ No structural changes. Apply global spacing. Service images (`service-*.png`) al
 
 **Purpose:** Centrepiece for client acquisition — must look great even with partial real content.
 
-**Layout:** Bento grid — 1 large featured card (spans 2 columns × 2 rows) + 4 smaller cards in a 3-column grid.
+**Layout:** Bento grid — 3-column CSS grid. Featured card occupies columns 1–2, rows 1–2. Remaining 4 cells: col 3 row 1, col 3 row 2, col 1 row 3, col 2 row 3 (col 3 row 3 = "Coming soon" placeholder or a 5th project if available).
+
+```
+┌─────────────┬─────────────┬──────────┐
+│             │             │  small   │
+│  FEATURED   │   small 2   │  card 3  │
+│  (2col×2row)│             ├──────────┤
+│             ├─────────────┤  small   │
+│             │   small 4   │  card 5* │
+├─────────────┴─────────────┴──────────┤  ← row 3 only if >4 items
+│  (auto-fills with more cards or hidden)
+```
+
+*5th slot shows "Coming soon" if fewer than 5 real projects exist.
 
 **Filter system:**
 - Categories: `All | Branding | Content | Web | Social | Photography`
@@ -214,23 +230,28 @@ No structural changes. Apply global spacing. Service images (`service-*.png`) al
 **Layout:** Horizontal scroll carousel with CSS scroll snap (`scroll-snap-type: x mandatory`). Cards snap into place on scroll/swipe.
 
 **5 cards (real images from Desktop, copy to `/public/images/highlights/`):**
-1. London Met Talk — `london-met-talk.jpg`
-2. Filming Day — `filming-day.jpg`
-3. Brand Launch — `lovebrain-event.jpg`
-4. NISAU Conference — `nisau-conference.jpg`
-5. Snapchat HQ — `snap-in-colour-snapchat-hq.jpg`
+
+| # | Title | Image filename in `/public/images/highlights/` | Blurb (card) | Full story (Dialog) |
+|---|-------|-----------------------------------------------|--------------|---------------------|
+| 01 | London Met Talk | `london-met-talk.jpg` | Inspiring the next gen | Nia was invited to speak at London Metropolitan University, sharing her journey in creative marketing and inspiring the next generation of designers and brand strategists. |
+| 02 | Filming Day | `filming-day.jpg` | Action! Behind the lens | A full day on set directing and producing brand video content — from concept to camera, bringing stories to life through motion and narrative. |
+| 03 | Brand Launch | `lovebrain-event.jpg` | Pop, clink, cheer | The excitement of a live brand launch — months of strategy, design, and preparation culminating in one memorable moment. A major milestone for the client's identity. |
+| 04 | NISAU Conference | `nisau-conference.jpg` | Connecting the community | Representing AMI Creative at the NISAU Conference — meeting founders, creatives, and changemakers all building something meaningful. |
+| 05 | Snapchat HQ | `snap-in-colour-snapchat-hq.jpg` | In colour at Snap HQ | An unforgettable visit to Snapchat's London headquarters — exploring the intersection of social, tech, and creative culture. |
+
+**Note on asset filenames:** The source file `snap-in-colour-snapchat-hq.jpg` is copied to `/public/images/highlights/snap-in-colour-snapchat-hq.jpg` (keep original name — do not rename). Reference in code as `/images/highlights/snap-in-colour-snapchat-hq.jpg`.
 
 **Card design:**
 - Fixed width: `w-72 md:w-80`, full section height
 - Top 60%: image (`object-cover`)
-- Bottom 40%: step number (pink), title (navy bold), blurb (navy/60)
+- Bottom 40%: step number (pink, `text-primary font-black text-sm`), title (navy bold), blurb (navy/60, `text-sm`)
 - Cards alternate `bg-white` and `bg-light-blue` for rhythm
 - Click/tap opens a shadcn/ui `Dialog` with full story text + larger image
 
 **Navigation:**
-- Left/right arrow buttons (desktop)
-- Touch swipe (mobile — native scroll)
-- Dot indicators below
+- Left/right arrow buttons overlay the carousel, positioned at vertical centre, flanking the scroll container (outside the card area). Size: 40×40px circle, `bg-white shadow-md`, `text-navy` chevron icon. On hover: `bg-primary text-white`.
+- Touch swipe (mobile — native scroll, no arrow buttons shown on mobile)
+- Dot indicators below the carousel (`w-2 h-2` circles, active dot `bg-primary`, inactive `bg-navy/20`)
 
 **Component:** Refactor `src/components/Highlights.tsx` — convert to Client Component
 
@@ -266,6 +287,8 @@ No structural changes. Apply global spacing. Tighten card padding. Keep the tilt
 2. "The 3 questions I ask every new client" — Process — 4 min read
 3. "How to build a content strategy that actually converts" — Content — 6 min read
 
+**Blog post links:** All article links (including "Read all insights →") point to `/blog` which renders a simple "Coming soon" page for now. No 404s.
+
 **Data structure:** Array of post objects in the component — easy to swap for a CMS API call later.
 
 **Component:** New `src/components/Blog.tsx`
@@ -278,10 +301,13 @@ No structural changes. Apply global spacing. Tighten card padding. Keep the tilt
 
 **Changes:**
 - Wire form to Formspree (`https://formspree.io/f/{endpoint}`) — requires Nia to create a free Formspree account and paste the endpoint into an env var `NEXT_PUBLIC_FORMSPREE_ENDPOINT`
+- **Graceful degradation:** if `NEXT_PUBLIC_FORMSPREE_ENDPOINT` is not set, the form renders normally but the submit button is disabled with tooltip "Contact form not yet configured" — never throws, never silently fails
 - Add `useState` for form state: `idle | submitting | success | error`
 - Success state: replace form with a thank-you message ("Thanks! I'll be in touch within 24 hours.")
-- Error state: inline error message below submit button
+- Error state: inline error message below submit button ("Something went wrong — please email hello@amicreative.com directly")
 - Submit button: shows spinner while `submitting`
+
+**Pre-implementation action required:** Nia must create a free Formspree account at formspree.io and add `NEXT_PUBLIC_FORMSPREE_ENDPOINT=https://formspree.io/f/YOUR_ID` to `.env.local`
 
 **Component:** Refactor `src/components/Contact.tsx` — convert to Client Component
 
@@ -290,9 +316,12 @@ No structural changes. Apply global spacing. Tighten card padding. Keep the tilt
 ### Footer (fix)
 
 **Changes:**
-- Update social links to real URLs (to be filled in by Nia — use env vars or constants file)
-- Update copyright to 2025
-- Add `SOCIAL_LINKS` constants object in `src/lib/constants.ts` so links are easy to update in one place
+- Add `SOCIAL_LINKS` constants object in `src/lib/constants.ts` so links are easy to update in one place. Expected platforms (URLs to be provided by Nia — stub with `#` until confirmed):
+  - Instagram
+  - LinkedIn
+  - TikTok
+  - Email (`mailto:hello@amicreative.com`)
+- Update copyright to `© {new Date().getFullYear()} AMI Creative Studio. All rights reserved.` (dynamic, never stale)
 
 ---
 
@@ -305,7 +334,7 @@ images/filming-day.jpg           → /public/images/highlights/filming-day.jpg
 images/london-met-talk.jpg       → /public/images/highlights/london-met-talk.jpg
 images/lovebrain-event.jpg       → /public/images/highlights/lovebrain-event.jpg
 images/nisau-conference.jpg      → /public/images/highlights/nisau-conference.jpg
-images/snap-in-colour-snapchat-hq.jpg → /public/images/highlights/snapchat-hq.jpg
+images/snap-in-colour-snapchat-hq.jpg → /public/images/highlights/snap-in-colour-snapchat-hq.jpg
 portfolio/lsbu-44.jpg            → /public/images/portfolio/lsbu-44.jpg
 portfolio/lsbu-45.jpg            → /public/images/portfolio/lsbu-45.jpg
 portfolio/lsbu-46.jpg            → /public/images/portfolio/lsbu-46.jpg
