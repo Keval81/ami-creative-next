@@ -41,18 +41,18 @@ const SERVICES = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-16 md:py-24 px-6 lg:px-12">
-      <div className="max-w-[1200px] mx-auto">
-        <div className="flex flex-col items-center justify-center text-center gap-6 mb-20">
-          <h2 className="font-heading text-navy text-5xl md:text-7xl font-black leading-tight tracking-tight max-w-4xl">
+    <section id="services" className="py-20 md:py-32 px-6 lg:px-12">
+      <div className="max-w-7xl mx-auto">
+        <div className="fade-up flex flex-col items-center justify-center text-center gap-6 mb-20">
+          <h2 className="font-heading font-black text-5xl md:text-7xl text-navy leading-[1.05] tracking-tight max-w-4xl">
             What I Do
           </h2>
-          <p className="text-navy/70 text-xl md:text-2xl font-medium leading-relaxed max-w-3xl">
+          <p className="text-lg md:text-xl text-navy/70 font-medium leading-relaxed max-w-3xl">
             High-end creative services tailored for your brand&apos;s unique
             narrative and ambitious goals.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
+        <div className="fade-up grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center" style={{ transitionDelay: "150ms" }}>
           {SERVICES.map((s) => (
             <CardHoverReveal key={s.title} className="rounded-2xl h-72 w-full cursor-pointer">
               <CardHoverRevealMain className="rounded-2xl">

@@ -2,7 +2,7 @@ import { MagneticButton } from "@/components/ui/magnetic-button";
 
 export default function About() {
   return (
-    <section id="about" className="py-16 md:py-24 px-6 lg:px-12">
+    <section id="about" className="py-20 md:py-32 px-6 lg:px-12">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <div className="relative w-full max-w-md mx-auto lg:max-w-none">
           <div className="absolute inset-0 bg-light-blue rounded-[2rem] transform -rotate-3 scale-105 z-0 transition-transform hover:rotate-0 duration-500 ease-in-out" />
@@ -51,10 +51,10 @@ export default function About() {
             </div>
           </div>
           <div className="flex flex-col gap-6">
-            <h2 className="font-heading text-5xl md:text-6xl lg:text-7xl font-black text-navy leading-[1.1] tracking-[-0.03em]">
+            <h2 className="fade-up font-heading font-black text-5xl md:text-7xl text-navy leading-[1.05] tracking-tight">
               Hi, I&apos;m Nia.
             </h2>
-            <div className="flex flex-col gap-4 text-lg md:text-xl text-slate-700 font-medium leading-relaxed max-w-2xl">
+            <div className="fade-up flex flex-col gap-4 text-lg md:text-xl text-navy/70 font-medium leading-relaxed max-w-2xl" style={{ transitionDelay: "150ms" }}>
               <p>
                 Welcome to my portfolio! I&apos;m Nia Bheda, a creative
                 professional passionate about bringing bold ideas to life with
@@ -67,7 +67,7 @@ export default function About() {
               </p>
             </div>
           </div>
-          <div className="pt-4">
+          <div className="fade-up pt-4" style={{ transitionDelay: "300ms" }}>
             <MagneticButton href="#contact">
               Get Started
             </MagneticButton>

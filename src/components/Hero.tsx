@@ -30,11 +30,11 @@ export default function Hero() {
               Content with Heart &amp; Hustle ❤️ + 💪
             </TextScramble>
           </div>
-          <p className="text-base md:text-lg font-medium leading-relaxed text-navy/70 max-w-md">
+          <p className="fade-up text-base md:text-lg font-medium leading-relaxed text-navy/70 max-w-md">
             I&apos;m Nia Bheda. I help purpose-driven brands stand out and scale
             with creative strategy and storytelling that truly connects.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 mt-4">
+          <div className="fade-up flex flex-col sm:flex-row gap-4 mt-4" style={{ transitionDelay: "150ms" }}>
             <MagneticButton href="#contact" variant="pink">
               Let&apos;s Chat
             </MagneticButton>

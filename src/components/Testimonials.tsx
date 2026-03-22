@@ -38,18 +38,18 @@ function FilledStars() {
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="py-16 md:py-24 px-6 lg:px-12">
-      <div className="max-w-[1200px] mx-auto">
-        <div className="mb-16 text-center md:text-left relative z-10">
-          <h2 className="font-heading text-4xl md:text-5xl font-bold leading-tight tracking-[-0.02em] mb-4 text-navy">
+    <section id="testimonials" className="py-20 md:py-32 px-6 lg:px-12">
+      <div className="max-w-7xl mx-auto">
+        <div className="fade-up mb-16 text-center md:text-left relative z-10">
+          <h2 className="font-heading font-black text-5xl md:text-7xl text-navy leading-[1.05] tracking-tight mb-4">
             Client Love
           </h2>
-          <p className="text-lg text-navy/80 max-w-2xl">
+          <p className="text-lg md:text-xl text-navy/70 font-medium leading-relaxed max-w-2xl">
             Hear from the incredible people and brands I&apos;ve had the
             pleasure of partnering with to bring their visions to life.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 relative">
+        <div className="fade-up grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 relative" style={{ transitionDelay: "150ms" }}>
           {/* Decorative quotes */}
           <span className="material-symbols-outlined absolute -top-10 -left-10 text-[15rem] text-primary/10 -z-10 rotate-12 hidden md:block">
             format_quote
