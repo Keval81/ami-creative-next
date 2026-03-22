@@ -1,16 +1,12 @@
+import { Instagram, Linkedin, Music2, Mail } from "lucide-react";
+import { SOCIAL_LINKS } from "@/lib/constants";
+
 const FOOTER_NAV = [
   { href: "#hero", label: "Home" },
   { href: "#portfolio", label: "Work" },
   { href: "#services", label: "Services" },
   { href: "#about", label: "About" },
   { href: "#contact", label: "Contact" },
-];
-
-const SOCIALS = [
-  { label: "Instagram", icon: "photo_camera", href: "#" },
-  { label: "LinkedIn", icon: "work", href: "#" },
-  { label: "Twitter", icon: "tag", href: "#" },
-  { label: "Email", icon: "mail", href: "mailto:hello@amicreative.com" },
 ];
 
 export default function Footer() {
@@ -45,26 +41,24 @@ export default function Footer() {
               </a>
             ))}
           </nav>
-          <div className="flex items-center gap-6">
-            {SOCIALS.map((s) => (
-              <a
-                key={s.label}
-                aria-label={s.label}
-                className="group flex items-center justify-center h-12 w-12 rounded-full bg-white/10 hover:bg-primary transition-colors duration-300"
-                href={s.href}
-              >
-                <span className="material-symbols-outlined text-slate-300 group-hover:text-white transition-colors">
-                  {s.icon}
-                </span>
-              </a>
-            ))}
+          <div className="flex gap-4">
+            <a href={SOCIAL_LINKS.instagram} aria-label="Instagram" className="text-white/60 hover:text-white transition-colors">
+              <Instagram size={20} />
+            </a>
+            <a href={SOCIAL_LINKS.linkedin} aria-label="LinkedIn" className="text-white/60 hover:text-white transition-colors">
+              <Linkedin size={20} />
+            </a>
+            <a href={SOCIAL_LINKS.tiktok} aria-label="TikTok" className="text-white/60 hover:text-white transition-colors">
+              <Music2 size={20} />
+            </a>
+            <a href={SOCIAL_LINKS.email} aria-label="Email" className="text-white/60 hover:text-white transition-colors">
+              <Mail size={20} />
+            </a>
           </div>
         </div>
         {/* Copyright */}
         <div className="mt-12 text-center lg:text-left">
-          <p className="text-slate-400 text-sm font-medium tracking-wide uppercase">
-            &copy; 2024 AMI Creative Studio. All rights reserved.
-          </p>
+          <p className="text-white/40 text-sm">© {new Date().getFullYear()} AMI Creative Studio. All rights reserved.</p>
         </div>
       </div>
     </footer>
