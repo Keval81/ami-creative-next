@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { BLOG_POSTS } from "@/lib/constants";
 
@@ -31,6 +32,14 @@ export default function Blog() {
             href="/blog"
             className="lg:col-span-3 relative rounded-2xl overflow-hidden bg-navy min-h-[400px] flex flex-col justify-end p-8 group"
           >
+            {featured.image && (
+              <Image
+                src={featured.image}
+                alt={featured.title}
+                fill
+                className="object-cover opacity-20"
+              />
+            )}
             <div className="absolute inset-0 bg-navy/60 z-10" />
             <div className="relative z-20 flex flex-col gap-3">
               <span className="text-xs tracking-widest uppercase text-primary font-medium">
@@ -40,6 +49,9 @@ export default function Blog() {
                 {featured.title}
               </h3>
               <p className="text-white/50 text-sm">{featured.readTime}</p>
+              <span className="inline-flex items-center gap-1 text-sm font-medium text-white/70 group-hover:text-primary transition-colors mt-1">
+                Read more →
+              </span>
             </div>
           </Link>
 
