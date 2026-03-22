@@ -1,13 +1,24 @@
+"use client";
+
+import { useState } from "react";
+
 export function HeroGraphic() {
+  const [ready, setReady] = useState(false);
+
   return (
-    <div className="relative w-full h-full overflow-hidden">
+    <div className="relative w-full h-full overflow-hidden bg-cream">
       <video
         autoPlay
         loop
         muted
         playsInline
+        onCanPlay={() => setReady(true)}
         className="absolute inset-0 w-full h-full object-cover"
-        style={{ filter: "grayscale(80%)" }}
+        style={{
+          filter: "grayscale(80%)",
+          opacity: ready ? 1 : 0,
+          transition: "opacity 0.4s ease",
+        }}
       >
         <source src="/images/ami-logo-animation.webm" type="video/webm" />
         <source src="/images/ami-logo-animation.mp4" type="video/mp4" />

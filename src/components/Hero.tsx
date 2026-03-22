@@ -8,6 +8,7 @@ import { HeroGraphic } from "@/components/HeroGraphic";
 
 export default function Hero() {
   const [trigger, setTrigger] = useState(true);
+  const [logoReady, setLogoReady] = useState(false);
 
   const handleScrambleComplete = useCallback(() => {
     setTrigger(false);
@@ -28,10 +29,13 @@ export default function Hero() {
               ref={(el) => {
                 if (el) el.playbackRate = 0.25;
               }}
+              onCanPlay={() => setLogoReady(true)}
               style={{
                 width: '100%',
                 height: 'auto',
                 display: 'block',
+                opacity: logoReady ? 1 : 0,
+                transition: 'opacity 0.4s ease',
               }}
             >
               <source src="/images/ami-logo-animation.webm" type="video/webm" />
