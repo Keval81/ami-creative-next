@@ -9,6 +9,7 @@ import Portfolio from "@/components/Portfolio";
 import Pricing from "@/components/Pricing";
 import Highlights from "@/components/Highlights";
 import Testimonials from "@/components/Testimonials";
+import Blog from "@/components/Blog";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { FlickeringGrid } from "@/components/ui/flickering-grid";
@@ -34,6 +35,7 @@ export default function Home() {
         <Portfolio />
         <Highlights />
         <Testimonials />
+        <Blog />
         <Contact />
         <Footer />
       </div>
