@@ -1,97 +1,35 @@
-"use client";
-import { useEffect, useState } from "react";
-
-const BG_IMAGES = [
-  "/images/bg-bigben.jpg",
-  "/images/logo-graffiti-1.png",
-  "/images/bg-london90s.jpg",
-  "/images/logo-graffiti-2.png",
-  "/images/bg-bananaman.jpg",
-  "/images/logo-graffiti-3.png",
-  "/images/bg-dangermouse.jpg",
-  "/images/logo-letter-a.png",
-  "/images/bg-carnival.jpg",
-  "/images/logo-ami-large-1.png",
-  "/images/logo-graffiti-5.png",
-  "/images/bg-london2000s.jpg",
-  "/images/logo-letter-m.png",
-  "/images/bg-duckula.jpg",
-  "/images/bg-portobello.jpg",
-  "/images/bg-w3bus.jpg",
-  "/images/logo-letter-i.png",
-  "/images/bg-pub.jpg",
-  "/images/logo-ami-large-2.png",
-  "/images/bg-towerbridge.jpg",
-  "/images/bg-rolandrat.jpg",
-  "/images/bg-graffiti.jpg",
-  "/images/bg-londonkids.jpg",
-];
-
-const isLogoImage = (src: string) => src.includes('logo-graffiti') || src.includes('logo-ami-large') || src.includes('logo-letter');
-
 export function HeroGraphic() {
-  const [bgIndex, setBgIndex] = useState(0);
-
-  // Fast flashing background — every 120ms
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setBgIndex((prev) => (prev + 1) % BG_IMAGES.length);
-    }, 120);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <div className="relative w-full h-full">
-      {BG_IMAGES.map((src, i) => (
-        isLogoImage(src) ? (
-          <div
-            key={src}
-            className="absolute inset-0 transition-none"
-            style={{ opacity: i === bgIndex ? 1 : 0 }}
-          >
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage: `url(/images/bg-graffiti.jpg)`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                filter: 'grayscale(100%) brightness(0.4)',
-              }}
-            />
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage: `url(${src})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
-                backgroundColor: 'transparent',
-              }}
-            />
-          </div>
-        ) : (
-          <div
-            key={src}
-            className="absolute inset-0 transition-none"
-            style={{
-              backgroundImage: `url(${src})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              opacity: i === bgIndex ? 1 : 0,
-              filter: 'grayscale(100%)',
-            }}
-          />
-        )
-      ))}
+    <div className="relative w-full h-full overflow-hidden">
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ filter: "grayscale(80%)" }}
+      >
+        <source src="/images/ami-logo-animation.webm" type="video/webm" />
+        <source src="/images/ami-logo-animation.mp4" type="video/mp4" />
+      </video>
+
+      {/* Left torn edge */}
       <svg
         className="absolute left-0 top-0 z-20 pointer-events-none"
-        style={{ width: '100px', height: '100%', overflow: 'visible' }}
+        style={{ width: "100px", height: "100%", overflow: "visible" }}
         viewBox="0 0 100 800"
         preserveAspectRatio="none"
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          <filter id="tear-left" x="-50%" y="0%" width="200%" height="100%" colorInterpolationFilters="sRGB">
+          <filter
+            id="tear-left"
+            x="-50%"
+            y="0%"
+            width="200%"
+            height="100%"
+            colorInterpolationFilters="sRGB"
+          >
             <feTurbulence
               type="fractalNoise"
               baseFrequency="0.025"
@@ -118,15 +56,24 @@ export function HeroGraphic() {
           filter="url(#tear-left)"
         />
       </svg>
+
+      {/* Bottom torn edge */}
       <svg
         className="absolute bottom-0 left-0 z-20 pointer-events-none"
-        style={{ width: '100%', height: '80px', overflow: 'visible' }}
+        style={{ width: "100%", height: "80px", overflow: "visible" }}
         viewBox="0 0 1000 80"
         preserveAspectRatio="none"
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          <filter id="tear-bottom" x="0%" y="-50%" width="100%" height="200%" colorInterpolationFilters="sRGB">
+          <filter
+            id="tear-bottom"
+            x="0%"
+            y="-50%"
+            width="100%"
+            height="200%"
+            colorInterpolationFilters="sRGB"
+          >
             <feTurbulence
               type="fractalNoise"
               baseFrequency="0.025"
