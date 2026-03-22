@@ -10,7 +10,6 @@ interface ExpandableCardProps {
   children?: React.ReactNode;
   className?: string;
   classNameExpanded?: string;
-  [key: string]: any;
 }
 
 export function ExpandableCard({
@@ -20,7 +19,6 @@ export function ExpandableCard({
   children,
   className,
   classNameExpanded,
-  ...props
 }: ExpandableCardProps) {
   const [active, setActive] = React.useState(false);
   const cardRef = React.useRef<HTMLDivElement>(null);
