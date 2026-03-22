@@ -42,6 +42,19 @@ export default function RootLayout({
       >
         {children}
         <MobileNav />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+      const observer = new IntersectionObserver(
+        (entries) => entries.forEach(e => e.isIntersecting && e.target.classList.add('visible')),
+        { threshold: 0.15 }
+      );
+      document.addEventListener('DOMContentLoaded', () =>
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el))
+      );
+    `,
+          }}
+        />
       </body>
     </html>
   );
