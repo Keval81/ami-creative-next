@@ -15,14 +15,12 @@ export default function Pricing() {
         </div>
         <div className="fade-up flex flex-col gap-6" style={{ transitionDelay: "150ms" }}>
           <div className="grid grid-cols-2 gap-4">
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 flex flex-col gap-2">
+            <div className="rounded-2xl border border-white/10 bg-white/10 p-6 flex flex-col gap-2">
               <p className="text-xs tracking-widest uppercase text-primary font-medium">One-off Project</p>
-              <h3 className="font-heading font-bold text-white text-xl">Project</h3>
               <p className="text-white/50 text-sm leading-relaxed">Fixed scope &amp; price, delivered with care.</p>
             </div>
             <div className="rounded-2xl bg-primary p-6 flex flex-col gap-2 shadow-lg shadow-primary/30">
               <p className="text-xs tracking-widest uppercase text-white/70 font-medium">Ongoing Partnership</p>
-              <h3 className="font-heading font-bold text-white text-xl">Retainer</h3>
               <p className="text-white/80 text-sm leading-relaxed">Monthly retainer for consistent creative support.</p>
             </div>
           </div>
