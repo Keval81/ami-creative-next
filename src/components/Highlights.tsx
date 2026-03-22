@@ -68,15 +68,13 @@ export default function Highlights() {
           <div
             ref={scrollRef}
             onScroll={handleScroll}
-            className="flex gap-4 overflow-x-auto scrollbar-hide"
-            style={{ scrollSnapType: "x mandatory" }}
+            className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory"
           >
             {HIGHLIGHT_CARDS.map((card, i) => (
               <button
                 key={card.num}
                 onClick={() => setOpenCard(card)}
-                className={`shrink-0 w-72 md:w-80 h-[380px] rounded-2xl overflow-hidden text-left flex flex-col ${CARD_BACKGROUNDS[i % 2]}`}
-                style={{ scrollSnapAlign: "start" }}
+                className={`shrink-0 w-72 md:w-80 h-[380px] rounded-2xl overflow-hidden text-left flex flex-col snap-start ${CARD_BACKGROUNDS[i % 2]}`}
               >
                 {/* Image — top 60% */}
                 <div className="relative w-full" style={{ height: "60%" }}>
